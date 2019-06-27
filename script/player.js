@@ -4,11 +4,11 @@ $(window).on('resize', function () {
     var screenWidth = $(window).width();
     if (screenWidth < 700) {
         video.removeAttr('autoplay');
-        video.css("visibility", "hidden");
-        image.css("visibility", "visible");
+        video.css("display", "none");
+        image.css("display", "block");
     } else {
-        video.css("visibility", "visible");
-        image.css("visibility", "hidden");
+        video.css("display", "block");
+        image.css("display", "none");
         video.attr('autoplay');
     }
 }).trigger('resize');

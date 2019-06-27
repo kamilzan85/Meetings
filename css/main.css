@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .brand-logo,
 img {
     height: 100%;
@@ -28,4 +32,74 @@ h1 {
 
 h3 {
     font-size: 1.25rem;
+}
+
+.no-padding-lr {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.btn-long {
+    margin: 30px 0;
+    width: 300px;
+}
+
+footer {
+    position: relative;
+    border-top: 1px solid #999999;
+}
+
+.footer-arrow {
+    font-size: 4rem;
+    position: absolute;
+    left: 100px;
+    top: 20px;
+}
+
+.footer-arrow a {
+    text-decoration: none;
+    color: white;
+}
+
+.list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.list-inline>li {
+    display: inline-block;
+    padding-right: 15px;
+    padding-left: 5px;
+}
+
+.list-inline i {
+    font-size: 2rem;
+}
+
+@media(max-width: 992px) {
+    .footer-arrow {
+        right: 25px;
+        left: auto;
+    }
+}
+
+@media(max-width: 800px) {
+    .footer-logo {
+        float: right;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .header::before {
+        height: 100%;
+        border-width: 15px;
+        border-color: #ffb74d;
+    }
 }
