@@ -21,8 +21,9 @@ nav ul a {
 }
 
 h1,
-h2 {
-    margin: 0;
+h2,
+h3 {
+    margin: 20px;
     padding: 0;
 }
 
@@ -30,8 +31,16 @@ h1 {
     font-size: 2rem;
 }
 
+h2 {
+    font-size: 1.60rem;
+}
+
 h3 {
     font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1rem;
 }
 
 .no-padding-lr {
