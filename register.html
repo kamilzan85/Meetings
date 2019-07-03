@@ -33,39 +33,43 @@
                     <h1><b>Meetings</b></h1>
                 </div>
             </div>
-            <form class="col s12">
+            <form class="col s12" id="register-form" action="index.html">
                 <div class="row">
                     <div class="input-field col s10 offset-s1 m8 offset-m2">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Login</label>
+                        <input id="login" type="text" class="" min="5" max="20">
+                        <label for="login">Login</label>
+                        <span id="helper-login" class="helper-text" data-error=""></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s10 offset-s1 m8 offset-m2">
                         <i class="material-icons prefix">email</i>
-                        <input id="email" type="email" class="validate">
+                        <input id="email" type="email" class="">
                         <label for="email">Email</label>
+                        <span id="helper-email" class="helper-text" data-error=""></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s10 offset-s1 m8 offset-m2">
                         <i class="material-icons prefix">vpn_key</i>
-                        <input id="password" type="password" class="validate">
+                        <input id="password" type="password" class="">
                         <label for="password">Password</label>
+                        <span id="helper-password" class="helper-text" data-error=""></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s10 offset-s1 m8 offset-m2">
                         <i class="material-icons prefix">vpn_key</i>
-                        <input id="confirm_password" type="password" class="validate">
+                        <input id="confirm_password" type="password" class="">
                         <label for="confirm_password">Confirm password</label>
+                        <span id="helper-cpassword" class="helper-text" data-error="Passwords is not the same."></span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s6 m4 offset-m4 offset-s3">
-                        <a class="waves-effect waves-light orange lighten-2 btn btn-login">Sign Up</a>
-                    </div>
+                <div class="row center-align">
+                    <button class="btn waves-effect waves-light orange lighten-2 btn btn-login" type="submit"
+                        name="action" id="button-register" disabled>Sign up
+                    </button>
                 </div>
             </form>
             <div class="row">
@@ -75,7 +79,7 @@
             </div>
         </div>
     </div>
-
+    <script src="script/register.js"></script>
 </body>
 
 </html>

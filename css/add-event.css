@@ -70,3 +70,25 @@ form {
     width: 100%;
     border: 1px solid black;
 }
+
+input[type=range]::-webkit-slider-thumb {
+    background-color: #ffb74d;
+}
+
+input[type=range]::-moz-range-thumb {
+    background-color: #ffb74d;
+}
+
+input[type=range]::-ms-thumb {
+    background-color: #ffb74d;
+}
+
+/***** These are to edit the thumb and the text inside the thumb *****/
+input[type=range]+.thumb {
+    background-color: #ffb74d;
+}
+
+input[type=range]+.thumb.active .value {
+    color: white;
+    font-weight: bold;
+}

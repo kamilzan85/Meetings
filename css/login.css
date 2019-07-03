@@ -12,8 +12,9 @@ body {
     content: "";
 }
 
-h1 {
-    margin-bottom: 20px;
+.header h1 {
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 #login-wrapper {
@@ -42,8 +43,23 @@ h1 {
 }
 
 .btn-login {
-    margin: 30px 0;
-    width: 100%;
+    margin: 30px auto;
+    width: 50%;
+}
+
+#helper-login,
+#helper-email,
+#helper-password,
+#helper-cpassword {
+    display: none;
+}
+
+.input-field .helper-text::after {
+    position: static;
+}
+
+span {
+    display: inline-block;
 }
 
 .input-field .prefix.active {
@@ -52,8 +68,8 @@ h1 {
 
 .header {
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 
 a {

@@ -17,6 +17,7 @@ function removeUploadedPhoto() {
 
 $("#imgInp").change(function () {
     $("#imgInp").hide();
+    $("#image-uploaded").show();
     $(".image-placeholder").css("height", "auto");
     $(".image-placeholder-description").hide();
     $(".image-placeholder").removeClass("thumbnail");
@@ -28,6 +29,7 @@ $("#imgInp").change(function () {
 $("span").click(function () {
     removeUploadedPhoto();
     $("#imgInp").show();
+    $("#image-uploaded").hide();
     $(".image-placeholder").css("height", "300px");
     $(".image-placeholder-description").show();
     $(".image-placeholder").addClass("thumbnail");
