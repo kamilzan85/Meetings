@@ -47,6 +47,16 @@ body {
     width: 50%;
 }
 
+.row .center-align{
+    margin-bottom: 0;
+}
+
+p{
+    font-weight: bold;
+    color: #B00020;
+    margin: 0;
+}
+
 #helper-login,
 #helper-email,
 #helper-password,
