@@ -84,11 +84,11 @@ input[type=range]::-ms-thumb {
 }
 
 /***** These are to edit the thumb and the text inside the thumb *****/
-input[type=range]+.thumb {
+input[type=range] + .thumb {
     background-color: #ffb74d;
 }
 
-input[type=range]+.thumb.active .value {
+input[type=range] + .thumb.active .value {
     color: white;
     font-weight: bold;
 }

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://kit.fontawesome.com/791bdd6a9a.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/add-event.css">
+</head>
+
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo"><img src="img/logo.png" id="logo"></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">Javascript</a></li>
+            <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+    </div>
+</nav>
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+</ul>
+
+<div class="container">
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="col s12 m6 l5">
+                    <div class="image-placeholder thumbnail hoverable">
+                        <div class="image-placeholder-description">
+                            <i class="material-icons">add_a_photo</i>
+                            <p>Add a photo</p>
+                        </div>
+                        <input type="file" class="image-input" id="imgInp">
+                        <img id="image-uploaded" class="responsive-img" src="" alt=" " hidden>
+                        <span class="button-close">&#10006;</span>
+                    </div>
+                    <div class="hide-on-small-only" id="map">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m4 l5">
+                        <input placeholder="E.g. Live coding - Łódź" id="title" type="text" class="validate">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="input-field col s12 m4 l5">
+                            <textarea id="description" type="text" class="materialize-textarea" data-length="500"
+                                      placeholder="Lorem ipsum dolor sit amet."></textarea>
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="input-field col s12 m4 l5">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Categorie</label>
+                    </div>
+                    <div class="input-field col s12 m4 l5">
+                        <input type="text" class="datepicker" id='event-date'>
+                        <label for="event-date">Event date</label>
+                    </div>
+                    <div class="input-field col s12 m4 l5">
+                        <input placeholder="Politechnika Łódzka, Łódź, Polska" id="search" type="text"
+                               class="validate">
+                        <label for="search">Place of meeting</label>
+                    </div>
+                    <input type="text" value="" hidden id="lng"></input>
+                    <input type="text" value="" hidden id="lat"></input>
+                    <div class="col s12 m4 l5">
+                        <label for="place">Number of seats: </label>
+                        <p class="range-field ">
+                            <input type="range" id="number-of-seats" min="10" max="500" step="5">
+
+                        </p>
+                    </div>
+                    <div class="col s12 m4 l5 center-align">
+                        <button class="btn waves-effect waves-light btn-long orange lighten-2" type="submit"
+                                name="action">Create
+                            event!
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<footer class="page-footer orange lighten-2">
+    <div class="footer-arrow">
+        <a href="#presentation"><i class="fas fa-arrow-up"></i></a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                    content.
+                </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Find us on:</h5>
+                <ul class="list-inline">
+                    <li><i class="fab fa-facebook-f"></i></li>
+                    <li><i class="fab fa-twitter"></i></li>
+                    <li><i class="fab fa-instagram"></i></li>
+                    <li><i class="fab fa-linkedin"></i></li>
+                    <li><i class="fab fa-snapchat"></i></li>
+                </ul>
+            </div>
+            <div class="col s12">
+                <img class="footer-logo" src="img/logo3.png">
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+
+<script src="script/navbar.js"></script>
+<script src="script/image-upload.js"></script>
+<script src="script/new-event-form.js"></script>
+
+<!-- Google Maps scripts -->
+<script src="script/maps.js"></script>
+<script
+        src="http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=AIzaSyDO2dlu-aTBCWGzLRHhL9Ac_ZGbAkPy0g8"
+        async defer>
+</script>
+</body>
+
+
+</html>
