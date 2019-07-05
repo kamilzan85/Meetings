@@ -52,8 +52,7 @@ body {
 }
 
 p{
-    font-weight: bold;
-    color: #B00020;
+    color: #F44336;
     margin: 0;
 }
 
@@ -69,7 +68,12 @@ p{
 }
 
 span {
+    color: #F44336;
     display: inline-block;
+    position: relative;
+    min-height: 18px;
+    font-size: 12px;
+    margin-left: 3rem;
 }
 
 .input-field .prefix.active {

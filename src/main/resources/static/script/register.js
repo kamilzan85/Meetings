@@ -6,11 +6,14 @@ var usernameRegex = /^[a-zA-Z0-9]{5,20}$/;
 var emailRegex = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
 
 /*This regular expression expects atleast 1 small-case letter, 1 Capital letter, 
-1 digit, 1 special character and the length should be between 6-10 characters. 
+1 digit and the length should be between 6-10 characters.
 The sequence of the characters is not important.*/
-var passwordRegex = /(?=^.{6,15}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/;
+var passwordRegex = /(?=^.{6,15}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
 
 function checkLogin() {
+    if($("#b-helper-login").length){
+        $("#b-helper-login").hide();
+    }
     var vlogin = login.val();
 
     if (usernameRegex.test(vlogin)) {
@@ -34,6 +37,9 @@ function checkLogin() {
 };
 
 function checkEmail() {
+    if($("#b-helper-email").length){
+        $("#b-helper-email").hide();
+    }
     var vemail = email.val();
 
     if (emailRegex.test(vemail)) {
@@ -53,6 +59,9 @@ function checkEmail() {
 };
 
 function checkCPassword() {
+    if($("#b-helper-cpassword").length){
+        $("#b-helper-cpassword").hide();
+    }
     var vcpassword = cpassword.val();
     var vpassword = password.val();
 
@@ -63,7 +72,7 @@ function checkCPassword() {
         checkform();
         return true;
     } else {
-        $("#helper-cpassword").attr("data-error", "Passwords are not the same.").show();
+        $("#helper-cpassword").attr("data-error", "Passwords do not match.").show();
         cpassword.addClass("invalid");
         cpassword.removeClass("valid");
     }
@@ -72,6 +81,9 @@ function checkCPassword() {
 }
 
 function checkPassword() {
+    if($("#b-helper-password").length){
+        $("#b-helper-password").hide();
+    }
     var vpassword = password.val();
     var vcpassword = cpassword.val();
     if (vcpassword.length != 0) {
@@ -111,17 +123,17 @@ function checkform() {
 };
 
 $(document).ready(function () {
-    if (login.val().length != 0) {
-        checkLogin();
+    if($("#b-helper-login").length){
+        login.addClass("invalid");;
     }
-    if (email.val().length != 0) {
-        checkEmail();
+    if($("#b-helper-email").length){
+        email.addClass("invalid");
     }
-    if (password.val().length != 0) {
-        checkPassword();
+    if($("#b-helper-password").length){
+        password.addClass("invalid");
     }
-    if (cpassword.val().length != 0) {
-        checkCPassword();
+    if($("#b-helper-cpassword").length){
+        cpassword.addClass("invalid");
     }
 });
 
@@ -133,9 +145,3 @@ cpassword.keyup(checkCPassword);
 cpassword.change(checkCPassword);
 password.keyup(checkPassword);
 password.change(checkPassword);
-
-$("#register-form").submit(function (e) {
-    if (!checkCPassword() || !checkEmail() || !checkLogin() || !checkPassword()) {
-        e.preventDefault();
-    }
-});

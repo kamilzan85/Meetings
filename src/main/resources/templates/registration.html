@@ -39,7 +39,8 @@
                     <i class="material-icons prefix">account_circle</i>
                     <input th:field="*{username}" id="login" type="text" class="" min="5" max="20">
                     <label for="login">Login</label>
-                    <span id="helper-login" class="helper-text" data-error=""></span>
+                    <span id="b-helper-login" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+                    <span class="helper-text" id="helper-login" data-error=""></span>
                 </div>
             </div>
             <div class="row">
@@ -47,7 +48,8 @@
                     <i class="material-icons prefix">email</i>
                     <input th:field="*{email}" id="email" type="email" class="">
                     <label for="email">Email</label>
-                    <span id="helper-email" class="helper-text" data-error=""></span>
+                    <span id="b-helper-email" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+                    <span class="helper-text" id="helper-email" data-error=""></span>
                 </div>
             </div>
             <div class="row">
@@ -55,7 +57,8 @@
                     <i class="material-icons prefix">vpn_key</i>
                     <input th:field="*{password}" id="password" type="password" class="">
                     <label for="password">Password</label>
-                    <span id="helper-password" class="helper-text" data-error=""></span>
+                    <span id="b-helper-password" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+                    <span class="helper-text" id="helper-password" data-error=""></span>
                 </div>
             </div>
             <div class="row">
@@ -63,6 +66,7 @@
                     <i class="material-icons prefix">vpn_key</i>
                     <input th:field="*{passwordConfirm}" id="confirm_password" type="password" class="">
                     <label for="confirm_password">Confirm password</label>
+                    <span id="b-helper-cpassword" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">PasswordConfirm Error</span>
                     <span id="helper-cpassword" class="helper-text" data-error=""></span>
                 </div>
             </div>

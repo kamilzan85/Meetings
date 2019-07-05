@@ -1,8 +1,8 @@
 package com.skrzypczyk.meetings.controller;
 
 import com.skrzypczyk.meetings.model.User;
-import com.skrzypczyk.meetings.service.security.SecurityService;
 import com.skrzypczyk.meetings.service.user.UserService;
+import com.skrzypczyk.meetings.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @Controller
 public class PageController {
@@ -26,7 +27,7 @@ public class PageController {
     private UserService userService;
 
     @Autowired
-    private SecurityService securityService;
+    private UserValidator userValidator;
 
     @GetMapping("/home")
     public String homePage(){
@@ -66,11 +67,11 @@ public class PageController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm")User userForm, BindingResult bindingResult){
+    public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult){
+        userValidator.validate(userForm, bindingResult);
         if(bindingResult.hasErrors()){
             return "registration";
         }
-
         userService.save(userForm);
         return "redirect:/home";
     }
