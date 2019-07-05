@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -33,11 +33,11 @@
                 <h1><b>Meetings</b></h1>
             </div>
         </div>
-        <form class="col s12" id="register-form" action="index.html">
+        <form method="post" th:object="${userForm}" class="col s12" id="register-form" th:action="@{/registration}">
             <div class="row">
                 <div class="input-field col s10 offset-s1 m8 offset-m2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="login" type="text" class="" min="5" max="20">
+                    <input th:field="*{username}" id="login" type="text" class="" min="5" max="20">
                     <label for="login">Login</label>
                     <span id="helper-login" class="helper-text" data-error=""></span>
                 </div>
@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="input-field col s10 offset-s1 m8 offset-m2">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input id="password" type="password" class="">
+                    <input th:field="*{password}" id="password" type="password" class="">
                     <label for="password">Password</label>
                     <span id="helper-password" class="helper-text" data-error=""></span>
                 </div>

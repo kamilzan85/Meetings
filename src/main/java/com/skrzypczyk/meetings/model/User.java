@@ -6,8 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-@Setter
 @Getter
+@Setter
 @Entity
 @Table(name="user")
 public class User {
@@ -24,4 +24,5 @@ public class User {
 
     @ManyToMany
     private Set<Role> roles;
+
 }
