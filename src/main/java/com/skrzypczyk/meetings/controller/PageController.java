@@ -39,11 +39,10 @@ public class PageController {
     }
 
     @GetMapping(value="/logout")
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    public void logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout=true";
     }
 }
