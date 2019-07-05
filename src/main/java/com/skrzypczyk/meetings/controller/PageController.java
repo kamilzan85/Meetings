@@ -45,7 +45,7 @@ public class PageController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(!(auth instanceof AnonymousAuthenticationToken)){
-            return "redirect:/index";
+            return "redirect:/home";
         }
         model.addAttribute("msg", errorMsg);
         return "login";

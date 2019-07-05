@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="input-field col s10 offset-s1 m8 offset-m2">
                     <i class="material-icons prefix">email</i>
-                    <input id="email" type="email" class="">
+                    <input th:field="*{email}" id="email" type="email" class="">
                     <label for="email">Email</label>
                     <span id="helper-email" class="helper-text" data-error=""></span>
                 </div>
@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="input-field col s10 offset-s1 m8 offset-m2">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input id="confirm_password" type="password" class="">
+                    <input th:field="*{passwordConfirm}" id="confirm_password" type="password" class="">
                     <label for="confirm_password">Confirm password</label>
                     <span id="helper-cpassword" class="helper-text" data-error=""></span>
                 </div>
