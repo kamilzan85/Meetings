@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -22,18 +22,16 @@
         <a href="#!" class="brand-logo"><img src="img/logo.png" id="logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+            <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+            <li sec:authorize="isAnonymous()"><a href="/registration">Register</a></li>
         </ul>
     </div>
 </nav>
 <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="/logout">Logout</a></li>
+    <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+    <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+    <li sec:authorize="isAnonymous()"><a href="/registration">Register</a></li>
 </ul>
 <section id="presentation">
     <div class="row no-padding-lr">

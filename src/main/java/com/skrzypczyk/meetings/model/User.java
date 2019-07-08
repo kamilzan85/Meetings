@@ -23,7 +23,7 @@ public class User {
     @Transient
     private String password;
 
-    private String encodePassword;
+    private String encodedPassword;
 
     @Column(unique = true)
     private String email;
