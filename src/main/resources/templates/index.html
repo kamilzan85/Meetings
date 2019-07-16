@@ -57,18 +57,18 @@
                     <h3>Lorem ipsum dolor sit.</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, quam?</p>
                 </div>
-                <div class="col s6 m6 l3 ">
+                <div th:each="event : ${events}" class="col s6 m6 l3">
                     <div class="card">
                         <div class="card-image">
                             <img src="https://picsum.photos/id/234/400">
-                            <span class="card-title">Card Title</span>
+                            <span class="card-title" th:text="${event.title}"></span>
                         </div>
                         <div class="card-content">
-                            <p>I am a very simple card. I am good at containing small bits of information.
+                            <p th:text="${event.description}">I am a very simple card. I am good at containing small bits of information.
                                 I am convenient because I require little markup to use effectively.</p>
                         </div>
                         <div class="card-action">
-                            <a href="#">This is a link</a>
+                            <a th:href="@{/events/{identity}(identity=${event.identity})}">This is a link</a>
                         </div>
                     </div>
                 </div>

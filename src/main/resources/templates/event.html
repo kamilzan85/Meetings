@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
 
 <head>
     <meta charset="UTF-8">
@@ -11,14 +11,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://kit.fontawesome.com/791bdd6a9a.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/event.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/event.css" th:href="@{/css/event.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{/css/main.css}">
 </head>
 
 <body>
 <nav>
     <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo"><img src="img/logo.png" id="logo"></a>
+        <a th:href="@{/home}" class="brand-logo"><img th:src="@{/img/logo.png}" id="logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="sass.html">Sass</a></li>
@@ -43,7 +43,7 @@
                 <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
                 <h6>Organizer:</h6>
                 <div class="organizer">
-                    <img class="avatar" src="img/avatar.png">
+                    <img class="avatar" th:src="@{~/img/avatar.png}">
                     <div><a href="!#">Niiiick</a></div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
     <section>
         <div class="row">
             <div class="col s12 m7">
-                <img class="materialboxed event-image" src="img/example2.jpg">
+                <img class="materialboxed event-image" th:src="@{/img/example2.jpg}">
             </div>
             <div class="col s12 offset-m2  m3">
                 Tu postaram się wrzucić mapke //TODO
@@ -93,7 +93,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -105,7 +105,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -117,7 +117,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -129,7 +129,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -141,7 +141,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -153,7 +153,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -165,7 +165,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -177,7 +177,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <div class="card-avatar">
-                                    <img src="img/avatar.png">
+                                    <img th:src="@{/img/avatar.png}">
                                 </div>
                             </div>
                             <div class="card-content">

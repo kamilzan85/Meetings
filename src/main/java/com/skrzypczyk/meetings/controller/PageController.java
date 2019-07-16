@@ -1,6 +1,8 @@
 package com.skrzypczyk.meetings.controller;
 
+import com.skrzypczyk.meetings.model.Event;
 import com.skrzypczyk.meetings.model.User;
+import com.skrzypczyk.meetings.service.event.EventService;
 import com.skrzypczyk.meetings.service.user.UserService;
 import com.skrzypczyk.meetings.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
+import java.util.List;
 
 @Controller
 public class PageController {
+
+    @Autowired
+    private EventService eventService;
 
     @Autowired
     private UserService userService;
@@ -30,8 +35,10 @@ public class PageController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/home")
-    public String homePage(){
+    @GetMapping(value = {"/home", "/"})
+    public String homePage(Model model){
+        List<Event> eventList = eventService.findNewestPosts().getContent();
+        model.addAttribute("events", eventList);
         return "index";
     }
 

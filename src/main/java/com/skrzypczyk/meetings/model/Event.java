@@ -2,6 +2,7 @@ package com.skrzypczyk.meetings.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.utility.RandomString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,6 +17,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String identity;
+
     private String title;
 
     private String description;
@@ -29,4 +32,8 @@ public class Event {
     private Place placeOfMeeting;
 
     private Integer seats;
+
+    public Event(){
+        this.identity = RandomString.make(8);
+    }
 }
