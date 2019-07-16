@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+
 @Controller
 public class PageController {
 
@@ -64,6 +65,11 @@ public class PageController {
     public String registration(Model model){
         model.addAttribute("userForm", new User());
         return "registration";
+    }
+
+    @GetMapping("/new-event")
+    public String newEvent(){
+        return "add-event";
     }
 
     @PostMapping("/registration")
