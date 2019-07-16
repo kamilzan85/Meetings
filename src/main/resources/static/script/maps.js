@@ -61,3 +61,6 @@ function createMap() {
         map.fitBounds(bounds);
     });
 }
+
+var message = /*[[${message}]]*/ 'default';
+console.log(message);

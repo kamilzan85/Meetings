@@ -6,13 +6,18 @@ import com.skrzypczyk.meetings.service.event.EventServiceImpl;
 import com.skrzypczyk.meetings.service.place.PlaceServiceImpl;
 import com.skrzypczyk.meetings.service.role.RoleServiceImpl;
 import com.skrzypczyk.meetings.service.user.UserServiceImpl;
+import net.bytebuddy.utility.RandomString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashSet;
+import java.util.Locale;
+import java.util.Random;
 import java.util.Set;
 
 @Service
@@ -44,23 +49,29 @@ public class BootstrapData implements InitializingBean {
         roleService.save(role);
         userService.save(administrator);
 
-        Category category = new Category();
-        category.setName("Testowa kategoria");
-        categoryService.save(category);
+        NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+        DecimalFormat df = (DecimalFormat)nf;
+        df.applyPattern("#.###");
+        Random r = new Random();
+        for(int i =0; i<20; i++){
+            Category category = new Category();
+            category.setName(RandomString.make());
+            categoryService.save(category);
 
-        Place place = new Place();
-        place.setName("Politechnika Łódzka");
-        place.setX(51.754226);
-        place.setY(19.451949);
-        placeService.save(place);
+            Place place = new Place();
+            place.setName(RandomString.make());
+            place.setX(Double.valueOf(df.format(-85+(85+85)*r.nextDouble())));
+            place.setY(Double.valueOf(df.format(-180+(180+180)*r.nextDouble())));
+            placeService.save(place);
 
-        Event event = new Event();
-        event.setCategory(category);
-        event.setDescription("Testowe wydarzenie");
-        event.setPlaceOfMeeting(place);
-        event.setSeats(500);
-        event.setTitle("TEST");
-        eventService.save(event);
+            Event event = new Event();
+            event.setCategory(category);
+            event.setDescription(RandomString.make());
+            event.setPlaceOfMeeting(place);
+            event.setSeats(r.nextInt());
+            event.setTitle(RandomString.make());
+            eventService.save(event);
+        }
 
 
     }

@@ -11,8 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://kit.fontawesome.com/791bdd6a9a.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/event.css" th:href="@{/css/event.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/event.css" th:href="@{/css/event.css}">
 </head>
 
 <body>
@@ -63,8 +63,9 @@
             <div class="col s12 m7">
                 <img class="materialboxed event-image" th:src="@{/img/example2.jpg}">
             </div>
-            <div class="col s12 offset-m2  m3">
-                Tu postaram się wrzucić mapke //TODO
+            <div class="col s12 m5">
+                <div id="map">
+                </div>
             </div>
         </div>
         <div class="row">
@@ -290,7 +291,20 @@
     </div>
 </footer>
 </body>
-<script src="script/navbar.js"></script>
-<script src="script/event.js"></script>
+<script th:src="@{/script/navbar.js}"></script>
+<script th:src="@{/script/event.js}"></script>
+<script th:inline="javascript" th:src="@{/script/maps2.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var tLat = /*[[${event.getPlaceOfMeeting().getX()}]]*/ 43.654;
+    var tLng = /*[[${event.getPlaceOfMeeting().getY()}]]*/ -79.383;
+    console.log(tLng);
+    console.log(tLat);
+    /*]]>*/
+</script>
+<script
+        src="http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=AIzaSyDO2dlu-aTBCWGzLRHhL9Ac_ZGbAkPy0g8"
+        async defer>
+</script>
 
 </html>

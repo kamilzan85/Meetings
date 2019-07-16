@@ -17,6 +17,7 @@ public class EventController {
     public String singlePost(@PathVariable String identity, Model model){
         Event event = eventService.findEventByIdentity(identity);
         model.addAttribute("event", event);
+        model.addAttribute("point", event.getPlaceOfMeeting().getX());
         return "event";
     }
 }
