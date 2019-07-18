@@ -11,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -32,7 +34,7 @@ public class EventValidator implements Validator {
             errors.rejectValue("title", null,"Title must be at least 5 and up to 100 characters long.");
         }
         if(!event.getDescription().matches("[\\W\\D]{50,500}$")){
-            errors.rejectValue("title", null,"Description must be at least 50 and up to 1000 characters long.");
+            errors.rejectValue("title", null,"Description must be at least 50 and up to 500 characters long.");
         }
         if(event.getCategory() == null){
             errors.rejectValue("category", null, "Please choose category!");
@@ -41,7 +43,7 @@ public class EventValidator implements Validator {
         }
         if(event.getDate() == null){
             errors.rejectValue("date", null, "Invalid date of event!");
-        }else if(event.getDate().before(new Date())){
+        }else if(event.getDate().isBefore(LocalDate.now())){
             errors.rejectValue("date", null, "Invalid date of event!");
         }
         if(event.getPlaceOfMeeting() == null){

@@ -1,11 +1,16 @@
 package com.skrzypczyk.meetings.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.Getter;
 import lombok.Setter;
 import net.bytebuddy.utility.RandomString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 @Getter
 @Setter
@@ -19,14 +24,17 @@ public class Event {
 
     private String identity;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate date;
+
+    private LocalTime time;
+
     private String title;
 
     private String description;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private Category category;
-
-    private Date date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private Place placeOfMeeting;
@@ -36,4 +44,5 @@ public class Event {
     public Event(){
         this.identity = RandomString.make(8);
     }
+
 }

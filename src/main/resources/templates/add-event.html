@@ -74,9 +74,17 @@
                         <label>Categories</label>
                         <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category Error</span>
                     </div>
-                    <div class="input-field col s12 m4 l5">
-                        <input th:field="*{date}" type="text" class="datepicker" id='event-date'>
+                    <div class="input-field col s12 m2 l3">
+                        <input th:field="*{date}" th:value="*{date}" type="text" class="datepicker" id='event-date'>
                         <label for="event-date">Event date</label>
+                        <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date Error</span>
+
+                    </div>
+                    <div class="input-field col s12 m2 l2">
+                        <input th:field="*{time}" th:value="*{time}" type="time" class="timepicker" id='event-time'>
+                        <label for="event-time">Event time</label>
+                        <span th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Time Error</span>
+
                     </div>
                     <div class="input-field col s12 m4 l5">
                         <input th:field="*{placeOfMeeting.name}" placeholder="Politechnika Łódzka, Łódź, Polska" id="search" type="text"

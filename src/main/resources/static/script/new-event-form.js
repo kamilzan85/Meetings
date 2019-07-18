@@ -6,8 +6,20 @@ $(document).ready(function () {
     $('select').formSelect();
 });
 
+var datePickerOptions = {
+    format: 'dd-mm-yyyy'
+};
+
 $(document).ready(function () {
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker(datePickerOptions);
+});
+
+var timepickerOptions = {
+    twelveHour: false
+};
+
+$(document).ready(function(){
+    $('.timepicker').timepicker(timepickerOptions);
 });
 
 window.onload = function () {
