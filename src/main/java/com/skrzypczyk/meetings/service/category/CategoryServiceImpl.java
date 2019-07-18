@@ -5,6 +5,8 @@ import com.skrzypczyk.meetings.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -14,5 +16,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void save(Category category) {
         categoryRepository.save(category);
+    }
+
+    @Override
+    public Optional<Category> findCategoryById(Long id) {
+        return categoryRepository.findById(id);
     }
 }

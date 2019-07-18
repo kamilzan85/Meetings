@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -37,7 +37,7 @@
 
 <div class="container">
     <div class="row">
-        <form class="col s12">
+        <form action="/new-event" th:object="${eventForm}" method="post" class="col s12">
             <div class="row">
                 <div class="col s12 m6 l5">
                     <div class="image-placeholder thumbnail hoverable">
@@ -54,39 +54,43 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m4 l5">
-                        <input placeholder="E.g. Live coding - Łódź" id="title" type="text" class="validate">
+                        <input th:field="*{title}" placeholder="E.g. Live coding - Łódź" id="title" type="text" class="validate">
                         <label for="title">Title</label>
+                        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</span>
                     </div>
                     <div class="input-field col s12 m4 l5">
-                            <textarea id="description" type="text" class="materialize-textarea" data-length="500"
+                            <textarea th:field="*{description}" id="description" type="text" class="materialize-textarea" data-length="500"
                                       placeholder="Lorem ipsum dolor sit amet."></textarea>
                         <label for="description">Description</label>
+                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</span>
                     </div>
                     <div class="input-field col s12 m4 l5">
-                        <select>
+                        <select th:field="*{category}">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                             <option value="3">Option 3</option>
                         </select>
-                        <label>Categorie</label>
+                        <label>Categories</label>
+                        <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category Error</span>
                     </div>
                     <div class="input-field col s12 m4 l5">
-                        <input type="text" class="datepicker" id='event-date'>
+                        <input th:field="*{date}" type="text" class="datepicker" id='event-date'>
                         <label for="event-date">Event date</label>
                     </div>
                     <div class="input-field col s12 m4 l5">
-                        <input placeholder="Politechnika Łódzka, Łódź, Polska" id="search" type="text"
+                        <input th:field="*{placeOfMeeting.name}" placeholder="Politechnika Łódzka, Łódź, Polska" id="search" type="text"
                                class="validate">
                         <label for="search">Place of meeting</label>
+                        <span th:if="${#fields.hasErrors('placeOfMeeting')}" th:errors="*{placeOfMeeting}">PlaceOfMeeting Error</span>
                     </div>
-                    <input type="text" value="" hidden id="lng"></input>
-                    <input type="text" value="" hidden id="lat"></input>
+                    <input type="text" value="" th:field="*{placeOfMeeting.x}" hidden id="lng">
+                    <input type="text" value="" th:field="*{placeOfMeeting.y}" hidden id="lat">
                     <div class="col s12 m4 l5">
                         <label for="number-of-seats">Number of seats: </label>
                         <p class="range-field ">
-                            <input type="range" id="number-of-seats" min="10" max="500" step="5">
-
+                            <input th:field="*{seats}" type="range" id="number-of-seats" min="10" max="500" step="5">
+                            <span th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}">Seats Error</span>
                         </p>
                     </div>
                     <div class="col s12 m4 l5 center-align">

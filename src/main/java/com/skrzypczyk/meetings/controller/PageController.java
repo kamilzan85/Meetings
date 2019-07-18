@@ -74,11 +74,6 @@ public class PageController {
         return "registration";
     }
 
-    @GetMapping("/new-event")
-    public String newEvent(){
-        return "add-event";
-    }
-
     @PostMapping("/registration")
     public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult){
         userValidator.validate(userForm, bindingResult);

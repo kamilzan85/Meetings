@@ -296,10 +296,8 @@
 <script th:inline="javascript" th:src="@{/script/maps2.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var tLat = /*[[${event.getPlaceOfMeeting().getX()}]]*/ 43.654;
-    var tLng = /*[[${event.getPlaceOfMeeting().getY()}]]*/ -79.383;
-    console.log(tLng);
-    console.log(tLat);
+    var tLat = /*[[${event.getPlaceOfMeeting().getY()}]]*/ 43.654;
+    var tLng = /*[[${event.getPlaceOfMeeting().getX()}]]*/ -79.383;
     /*]]>*/
 </script>
 <script

@@ -1,5 +1,4 @@
 package com.skrzypczyk.meetings.model;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,5 +15,4 @@ public class Place {
     private Double x;
     private Double y;
     private String name;
-
 }

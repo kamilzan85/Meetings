@@ -39,29 +39,29 @@ public class BootstrapData implements InitializingBean {
 
     private final Logger LOG = LoggerFactory.getLogger(BootstrapData.class);
 
-    public void initData(){
+    public void initData() {
 
         Role role = new Role("ADMIN");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
 
-        User administrator = new User( "Administrator", "Admin1","mateusz.skrzypczyk1@hotmail.com","Admin1", roles);
+        User administrator = new User("Administrator", "Admin1", "mateusz.skrzypczyk1@hotmail.com", "Admin1", roles);
         roleService.save(role);
         userService.save(administrator);
 
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
-        DecimalFormat df = (DecimalFormat)nf;
+        DecimalFormat df = (DecimalFormat) nf;
         df.applyPattern("#.###");
         Random r = new Random();
-        for(int i =0; i<20; i++){
+        for (int i = 0; i < 20; i++) {
             Category category = new Category();
             category.setName(RandomString.make());
             categoryService.save(category);
 
             Place place = new Place();
             place.setName(RandomString.make());
-            place.setX(Double.valueOf(df.format(-85+(85+85)*r.nextDouble())));
-            place.setY(Double.valueOf(df.format(-180+(180+180)*r.nextDouble())));
+            place.setX(Double.valueOf(df.format(-85 + (85 + 85) * r.nextDouble())));
+            place.setY(Double.valueOf(df.format(-180 + (180 + 180) * r.nextDouble())));
             placeService.save(place);
 
             Event event = new Event();
@@ -77,7 +77,7 @@ public class BootstrapData implements InitializingBean {
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet(){
         LOG.info("Bootstrapping data...");
         initData();
         LOG.info("...Bootstrapping completed");
