@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,27 +13,9 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/all-events.css">
 </head>
-
 <body>
-<nav>
-    <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo"><img src="img/logo.png" id="logo"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
-        </ul>
-    </div>
+<nav th:replace="fragments/navbar :: navbar">
 </nav>
-<ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
-</ul>
-
 <div class="row orange lighten-2 events-header center-align">
     <h1><b>Find another event for yourself</b></h1>
     <h3>Events nearby: 0</h3>
@@ -140,40 +121,7 @@
         </div>
     </div>
 </div>
-
-<footer class="page-footer orange lighten-2">
-    <div class="footer-arrow">
-        <a href="#presentation"><i class="fas fa-arrow-up"></i></a>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                    content.
-                </p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Find us on:</h5>
-                <ul class="list-inline">
-                    <li><i class="fab fa-facebook-f"></i></li>
-                    <li><i class="fab fa-twitter"></i></li>
-                    <li><i class="fab fa-instagram"></i></li>
-                    <li><i class="fab fa-linkedin"></i></li>
-                    <li><i class="fab fa-snapchat"></i></li>
-                </ul>
-            </div>
-            <div class="col s12">
-                <img class="footer-logo" src="img/logo3.png">
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        </div>
-    </div>
+<footer th:replace="fragments/footer :: footer">
 </footer>
 </body>
 <script src="script/navbar.js"></script>

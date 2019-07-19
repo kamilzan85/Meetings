@@ -41,9 +41,10 @@ public class EventValidator implements Validator {
         }else if(!categoryService.findCategoryById(event.getCategory().getId()).isPresent()){
             errors.rejectValue("category", null, "Invalid category!");
         }
+
         if(event.getDate() == null){
             errors.rejectValue("date", null, "Invalid date of event!");
-        }else if(event.getDate().isBefore(LocalDate.now())){
+        }else if(event.getDate().atTime(event.getTime()).isBefore(LocalDateTime.now())){
             errors.rejectValue("date", null, "Invalid date of event!");
         }
         if(event.getPlaceOfMeeting() == null){
