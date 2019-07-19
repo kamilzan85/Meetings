@@ -11,14 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class BootstrapData implements InitializingBean {
@@ -39,7 +37,11 @@ public class BootstrapData implements InitializingBean {
 
     private final Logger LOG = LoggerFactory.getLogger(BootstrapData.class);
 
+    @Value("#{'${data.bootstrap.categories}'.split(',')}")
+    private List<String> categories;
+
     public void initData() {
+
 
         Role role = new Role("ADMIN");
         Set<Role> roles = new HashSet<>();
@@ -49,15 +51,18 @@ public class BootstrapData implements InitializingBean {
         roleService.save(role);
         userService.save(administrator);
 
+        categories.sort(Comparator.naturalOrder());
+        for (String category: categories) {
+            Category categoryObject = new Category();
+            categoryObject.setName(category);
+            categoryService.save(categoryObject);
+        }
+
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
         DecimalFormat df = (DecimalFormat) nf;
         df.applyPattern("#.###");
         Random r = new Random();
         for (int i = 0; i < 20; i++) {
-            Category category = new Category();
-            category.setName(RandomString.make());
-            categoryService.save(category);
-
             Place place = new Place();
             place.setName(RandomString.make());
             place.setX(Double.valueOf(df.format(-85 + (85 + 85) * r.nextDouble())));
@@ -65,7 +70,7 @@ public class BootstrapData implements InitializingBean {
             placeService.save(place);
 
             Event event = new Event();
-            event.setCategory(category);
+            event.setCategory(categoryService.findCategoryById((long) r.nextInt(10)+1).get());
             event.setDescription(RandomString.make());
             event.setPlaceOfMeeting(place);
             event.setSeats(r.nextInt());

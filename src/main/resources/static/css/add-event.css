@@ -92,3 +92,9 @@ input[type=range] + .thumb.active .value {
     color: white;
     font-weight: bold;
 }
+
+.input-field .prefix ~ .range-field {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem);
+}

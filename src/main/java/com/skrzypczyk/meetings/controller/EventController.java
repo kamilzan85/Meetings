@@ -1,8 +1,10 @@
 package com.skrzypczyk.meetings.controller;
 import com.skrzypczyk.meetings.model.Event;
 import com.skrzypczyk.meetings.model.Place;
+import com.skrzypczyk.meetings.service.category.CategoryService;
 import com.skrzypczyk.meetings.service.event.EventService;
 import com.skrzypczyk.meetings.service.place.PlaceService;
+import com.skrzypczyk.meetings.utils.ExtendedProperties;
 import com.skrzypczyk.meetings.validator.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,16 +29,19 @@ public class EventController {
     @Autowired
     private EventValidator eventValidator;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @GetMapping("/events/{identity}")
-    public String singlePost(@PathVariable String identity, Model model){
+    public String singleEventView(@PathVariable String identity, Model model){
         Event event = eventService.findEventByIdentity(identity);
         model.addAttribute("event", event);
-        model.addAttribute("point", event.getPlaceOfMeeting().getX());
         return "event";
     }
 
     @GetMapping("/new-event")
     public String newEvent(Model model){
+        model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("eventForm", new Event());
         return "add-event";
     }

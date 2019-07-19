@@ -76,10 +76,6 @@ span {
     margin-left: 3rem;
 }
 
-.input-field .prefix.active {
-    color: #ffb74d !important;
-}
-
 .header {
     text-align: center;
     margin-top: 0px;

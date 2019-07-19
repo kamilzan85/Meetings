@@ -36,55 +36,66 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m4 l5">
-                        <input th:field="*{title}" placeholder="E.g. Live coding - Łódź" id="title" type="text" class="validate">
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">create</i>
+                        <input th:field="*{title}" placeholder="E.g. Live coding - Łódź" id="title" type="text"
+                               class="validate" data-length="50">
                         <label for="title">Title</label>
                         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</span>
                     </div>
-                    <div class="input-field col s12 m4 l5">
-                            <textarea th:field="*{description}" id="description" type="text" class="materialize-textarea" data-length="500"
-                                      placeholder="Lorem ipsum dolor sit amet."></textarea>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">content_paste</i>
+                        <textarea th:field="*{description}" id="description" type="text" class="materialize-textarea"
+                                  data-length="500"
+                                  placeholder="Lorem ipsum dolor sit amet."></textarea>
+                        <!--<textarea class="materialize-textarea"></textarea>-->
                         <label for="description">Description</label>
-                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</span>
+                        <span th:if="${#fields.hasErrors('description')}"
+                              th:errors="*{description}">Description Error</span>
                     </div>
-                    <div class="input-field col s12 m4 l5">
+                    <div class="input-field col s12 m6">
+                        <i class="prefix far fa-list-alt"></i>
                         <select th:field="*{category}">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                            <option value="" disabled selected>Choose category</option>
+                            <option th:each="category : ${categories}" th:value="${category.id}"
+                                    th:text="${category.name}"></option>
                         </select>
-                        <label>Categories</label>
+                        <label>Categorie</label>
                         <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category Error</span>
                     </div>
-                    <div class="input-field col s12 m2 l3">
+                    <div class="input-field col s12 m3">
+                        <i class="prefix far fa-calendar-alt"></i>
                         <input th:field="*{date}" th:value="*{date}" type="text" class="datepicker" id='event-date'>
                         <label for="event-date">Event date</label>
                         <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date Error</span>
-
                     </div>
-                    <div class="input-field col s12 m2 l2">
-                        <input th:field="*{time}" th:value="*{time}" type="time" class="timepicker" id='event-time'>
+                    <div class="input-field col s12 m3">
+                        <i class="prefix far fa-clock"></i>
+                        <input th:field="*{time}" th:value="*{time}" type="text" class="timepicker" id='event-time'>
                         <label for="event-time">Event time</label>
                         <span th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Time Error</span>
-
                     </div>
-                    <div class="input-field col s12 m4 l5">
-                        <input th:field="*{placeOfMeeting.name}" placeholder="Politechnika Łódzka, Łódź, Polska" id="search" type="text"
+                    <div class="input-field col s12 m6">
+                        <i class="prefix fas fa-map-marker-alt"></i>
+                        <input th:field="*{placeOfMeeting.name}" placeholder="Politechnika Łódzka, Łódź, Polska"
+                               id="search" type="text"
                                class="validate">
                         <label for="search">Place of meeting</label>
                         <span th:if="${#fields.hasErrors('placeOfMeeting')}" th:errors="*{placeOfMeeting}">PlaceOfMeeting Error</span>
                     </div>
                     <input type="text" value="" th:field="*{placeOfMeeting.x}" hidden id="lng">
                     <input type="text" value="" th:field="*{placeOfMeeting.y}" hidden id="lat">
-                    <div class="col s12 m4 l5">
-                        <label for="number-of-seats">Number of seats: </label>
-                        <p class="range-field ">
-                            <input th:field="*{seats}" type="range" id="number-of-seats" min="10" max="500" step="5">
-                            <span th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}">Seats Error</span>
-                        </p>
+                    <div class="col s12 m6">
+                        <div class="input-field">
+                            <i class="prefix fas fa-users"></i>
+                            <p class="range-field">
+                                <input th:field="*{seats}" type="range" id="number-of-seats" min="10" max="500" step="5">
+                                <label for="number-of-seats">Number of seats</label>
+                                <span th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}">Seats Error</span>
+                            </p>
+                        </div>
                     </div>
-                    <div class="col s12 m4 l5 center-align">
+                    <div class="col s12 m6 center-align">
                         <button class="btn waves-effect waves-light btn-long orange lighten-2" type="submit"
                                 name="action">Create
                             event!
@@ -105,7 +116,7 @@
 <!-- Google Maps scripts -->
 <script src="script/maps.js"></script>
 <script
-        src="http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=AIzaSyDO2dlu-aTBCWGzLRHhL9Ac_ZGbAkPy0g8"
+        src="http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=AIzaSyAApcHSRDnhKfL7v_gITT8qzlOSsOIXPtc"
         async defer>
 </script>
 </body>

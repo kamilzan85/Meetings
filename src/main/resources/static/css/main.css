@@ -112,3 +112,60 @@ footer {
         border-color: #ffb74d;
     }
 }
+
+.input-field .prefix.active {
+    color: #ffb74d !important;
+}
+
+.input-field input[type=text]:focus + label {
+    color: #ffb74d !important;
+}
+/* label focus color */
+textarea.materialize-textarea:focus:not([readonly]) + label,
+input[type="password"]:not(.browser-default):focus:not([readonly]) + label{
+    color: #ffb74d !important;
+}
+/* label underline focus color */
+input[type="text"]:not(.browser-default):focus:not([readonly]),
+input[type="password"]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]),
+.select-wrapper input.select-dropdown:focus{
+    border-bottom: 1px solid #ffb74d !important;
+    box-shadow: 0 1px 0 0 #ffb74d !important;
+}
+
+.dropdown-content li > a, .dropdown-content li > span,
+.datepicker-cancel,
+.datepicker-done{
+    color: #ffb74d !important;
+}
+
+.timepicker-digital-display,
+.datepicker-date-display
+{
+    background-color: #ffb74d !important;
+}
+
+
+
+.timepicker-canvas line{
+    stroke: #ffb74d !important;
+}
+.timepicker-canvas-bg,
+.timepicker-canvas-bearing{
+    fill: #ffb74d !important;
+}
+
+.datepicker-table td.is-today,
+.datepicker-table td.is-selected{
+    color: #ffb74d;
+}
+
+.datepicker-table td.is-selected{
+    background-color: #ffb74d !important;
+    color: #fff;
+}
+
+.datepicker-day-button:focus{
+    background-color: rgba(255, 250, 10, 0.25);
+}
