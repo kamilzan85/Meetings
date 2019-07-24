@@ -42,6 +42,7 @@ public class EventController {
 
     @GetMapping("/new-event")
     public String newEvent(Model model){
+        model.addAttribute("mapApiKey", ExtendedProperties.INSTANCE.getGoogleApiKey());
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("eventForm", new Event());
         return "add-event";

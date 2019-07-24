@@ -115,11 +115,8 @@
 
 <!-- Google Maps scripts -->
 <script src="script/maps.js"></script>
-<script
-        src="http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key="+key;
+<script th:src="${'http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=' + mapApiKey}"
         async defer>
 </script>
 </body>
-
-
 </html>
