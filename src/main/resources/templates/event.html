@@ -251,8 +251,7 @@
     var tLng = /*[[${event.getPlaceOfMeeting().getX()}]]*/ -79.383;
     /*]]>*/
 </script>
-<script
-        src="http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=AIzaSyAApcHSRDnhKfL7v_gITT8qzlOSsOIXPtc"
+<script  th:inline="javascript" th:src="${'http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=' + mapApiKey}"
         async defer>
 </script>
 

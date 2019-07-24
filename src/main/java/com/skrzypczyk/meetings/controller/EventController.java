@@ -36,6 +36,7 @@ public class EventController {
     public String singleEventView(@PathVariable String identity, Model model){
         Event event = eventService.findEventByIdentity(identity);
         model.addAttribute("event", event);
+        model.addAttribute("mapApiKey", ExtendedProperties.INSTANCE.getGoogleApiKey());
         return "event";
     }
 
