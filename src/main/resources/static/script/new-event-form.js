@@ -1,8 +1,4 @@
 $(document).ready(function () {
-    $('textarea#description').characterCounter();
-});
-
-$(document).ready(function () {
     $('select').formSelect();
 });
 

@@ -31,6 +31,7 @@ public class Event {
 
     private String title;
 
+    @Column(length=1000000)
     private String description;
 
     @ManyToOne(cascade = CascadeType.MERGE)

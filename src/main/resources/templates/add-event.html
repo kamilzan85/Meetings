@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://kit.fontawesome.com/791bdd6a9a.js"></script>
+    <script src="https://cdn.tiny.cloud/1/dg0m2vwj4rg09t4mu33ba3bvagwy0py5w76i982dst5vm28b/tinymce/5/tinymce.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/add-event.css">
@@ -45,10 +46,16 @@
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">content_paste</i>
-                        <textarea th:field="*{description}" id="description" type="text" class="materialize-textarea"
-                                  data-length="500"
-                                  placeholder="Lorem ipsum dolor sit amet."></textarea>
-                        <!--<textarea class="materialize-textarea"></textarea>-->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <textarea th:field="*{description}" id="editor" class="materialize-textarea"
+                                          data-length="500"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
+                            </div>
+                        </div>
+                        <textarea class="materialize-textarea modal-trigger" data-target="modal1" id="description" placeholder="Lorem ipsum dolor sit amet." onfocus="openModal()"></textarea>
                         <label for="description">Description</label>
                         <span th:if="${#fields.hasErrors('description')}"
                               th:errors="*{description}">Description Error</span>
@@ -112,11 +119,19 @@
 <script src="script/navbar.js"></script>
 <script src="script/image-upload.js"></script>
 <script src="script/new-event-form.js"></script>
+<script src="script/modals.js"></script>
 
 <!-- Google Maps scripts -->
 <script src="script/maps.js"></script>
 <script th:src="${'http://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=' + mapApiKey}"
         async defer>
+</script>
+<script>
+    tinymce.init({
+        selector: 'textarea#editor',
+        height: "500px"
+    });
+
 </script>
 </body>
 </html>

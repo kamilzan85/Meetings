@@ -62,5 +62,3 @@ function createMap() {
     });
 }
 
-var message = /*[[${message}]]*/ 'default';
-console.log(message);

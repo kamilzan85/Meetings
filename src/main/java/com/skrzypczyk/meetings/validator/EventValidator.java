@@ -29,12 +29,12 @@ public class EventValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Event event = (Event) o;
 
-        ValidationUtils.rejectIfEmpty(errors, "title", "NotEmpty");
+        ValidationUtils.rejectIfEmpty(errors, "title", "NotEmpty", "Title cannot be empty");
         if(!event.getTitle().matches("^[\\W\\D]{5,100}$")){
             errors.rejectValue("title", null,"Title must be at least 5 and up to 100 characters long.");
         }
         if(!event.getDescription().matches("[\\W\\D]{50,500}$")){
-            errors.rejectValue("title", null,"Description must be at least 50 and up to 500 characters long.");
+            errors.rejectValue("description", null,"Description must be at least 50 and up to 500 characters long.");
         }
         if(event.getCategory() == null){
             errors.rejectValue("category", null, "Please choose category!");
