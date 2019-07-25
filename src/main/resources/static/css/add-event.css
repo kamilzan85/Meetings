@@ -98,3 +98,20 @@ input[type=range] + .thumb.active .value {
     width: 92%;
     width: calc(100% - 3rem);
 }
+
+.helper-text {
+    color: #F44336 !important;
+    display: inline-block;
+    position: relative;
+    min-height: 18px;
+    font-size: 12px;
+    margin-left: 3rem;
+}
+
+#helper-title,
+#helper-description{
+    display: none;
+}
+.input-field .helper-text::after{
+    position: static;
+}

@@ -33,7 +33,7 @@ public class EventValidator implements Validator {
         if(!event.getTitle().matches("^[\\W\\D]{5,100}$")){
             errors.rejectValue("title", null,"Title must be at least 5 and up to 100 characters long.");
         }
-        if(!event.getDescription().matches("[\\W\\D]{50,500}$")){
+        if(!event.getDescription().matches("[\\W\\D]{5,1000}$")){
             errors.rejectValue("description", null,"Description must be at least 50 and up to 500 characters long.");
         }
         if(event.getCategory() == null){
@@ -47,8 +47,8 @@ public class EventValidator implements Validator {
         }else if(event.getDate().atTime(event.getTime()).isBefore(LocalDateTime.now())){
             errors.rejectValue("date", null, "Invalid date of event!");
         }
-        if(event.getPlaceOfMeeting() == null){
-            errors.rejectValue("place", null, "Please choose place of meeting!");
+        if(event.getPlaceOfMeeting().getX() == null || event.getPlaceOfMeeting().getY() == null){
+            errors.rejectValue("placeOfMeeting", null, "Please choose place of meeting!");
         }
         if(event.getSeats()<5){
             errors.rejectValue("seats", null, "Please enter correct number of seats");
