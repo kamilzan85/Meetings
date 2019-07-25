@@ -4,15 +4,38 @@ var lat;
 var lng;
 
 function createMap() {
-    var options = {
-        center: {
-            lat: 43.654,
-            lng: -79.383
-        },
-        disableDefaultUI: true,
-        zoom: 15
-    };
-    map = new google.maps.Map(document.getElementById('map'), options);
+    if (tLat == null || tLng == null) {
+        tLat = 43.654;
+        tLng = -79.383;
+
+        var options = {
+            center: {
+                lat: tLat,
+                lng: tLng
+            },
+            disableDefaultUI: true,
+            zoom: 15
+        };
+        map = new google.maps.Map(document.getElementById('map'), options);
+    } else {
+        var options = {
+            center: {
+                lat: tLat,
+                lng: tLng
+            },
+            disableDefaultUI: true,
+            zoom: 15
+        };
+        var myLatlng = new google.maps.LatLng(tLat,tLng);
+        map = new google.maps.Map(document.getElementById('map'), options);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Hello!'
+        });
+        marker.setMap(map);
+    }
+
 
     var input = document.getElementById("search");
     var searchBox = new google.maps.places.SearchBox(input);

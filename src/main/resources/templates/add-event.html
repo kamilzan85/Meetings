@@ -131,7 +131,12 @@
         selector: 'textarea#editor',
         height: "500px"
     });
-
+</script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var tLat = /*[[${eventForm.getPlaceOfMeeting().getY()}]]*/ 43.654;
+    var tLng = /*[[${eventForm.getPlaceOfMeeting().getX()}]]*/ -79.383;
+    /*]]>*/
 </script>
 </body>
 </html>
