@@ -1,4 +1,5 @@
 package com.skrzypczyk.meetings.controller;
+
 import com.skrzypczyk.meetings.model.Event;
 import com.skrzypczyk.meetings.model.Place;
 import com.skrzypczyk.meetings.service.category.CategoryService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -33,7 +35,7 @@ public class EventController {
     private CategoryService categoryService;
 
     @GetMapping("/events/{identity}")
-    public String singleEventView(@PathVariable String identity, Model model){
+    public String singleEventView(@PathVariable String identity, Model model) {
         Event event = eventService.findEventByIdentity(identity);
         model.addAttribute("event", event);
         model.addAttribute("mapApiKey", ExtendedProperties.INSTANCE.getGoogleApiKey());
@@ -41,26 +43,32 @@ public class EventController {
     }
 
     @GetMapping("/new-event")
-    public String newEvent(Model model){
+    public String newEvent(Model model) {
         model.addAttribute("mapApiKey", ExtendedProperties.INSTANCE.getGoogleApiKey());
         model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("eventForm", new Event());
+        if(model.asMap().get("eventForm")==null){
+            model.addAttribute("eventForm", new Event());
+        }
         return "add-event";
     }
 
     @PostMapping("/new-event")
-    public String createNewPost(@Valid @ModelAttribute("eventForm") Event eventForm, BindingResult bindingResult){
+    public String createNewPost(@Valid @ModelAttribute("eventForm") final Event eventForm,
+                                final BindingResult bindingResult,
+                                final RedirectAttributes redirectAttributes) {
         eventValidator.validate(eventForm, bindingResult);
-        if(bindingResult.hasErrors()){
-            return "add-event";
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.eventForm", bindingResult);
+            redirectAttributes.addFlashAttribute("eventForm", eventForm);
+            return "redirect:/new-event";
         }
         Place place = new Place();
-                place.setName(eventForm.getPlaceOfMeeting().getName());
-                place.setX(eventForm.getPlaceOfMeeting().getX());
-                place.setY(eventForm.getPlaceOfMeeting().getY());
+        place.setName(eventForm.getPlaceOfMeeting().getName());
+        place.setX(eventForm.getPlaceOfMeeting().getX());
+        place.setY(eventForm.getPlaceOfMeeting().getY());
         placeService.save(place);
         eventForm.setPlaceOfMeeting(place);
         eventService.save(eventForm);
-        return "redirect:/events/"+eventForm.getIdentity();
+        return "redirect:/events/" + eventForm.getIdentity();
     }
 }
