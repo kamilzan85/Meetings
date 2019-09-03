@@ -2,23 +2,24 @@ package com.skrzypczyk.meetings.controller;
 
 import com.skrzypczyk.meetings.model.Event;
 import com.skrzypczyk.meetings.model.User;
+import com.skrzypczyk.meetings.service.email.EmailService;
 import com.skrzypczyk.meetings.service.event.EventService;
 import com.skrzypczyk.meetings.service.user.UserService;
-import com.skrzypczyk.meetings.utils.ExtendedProperties;
 import com.skrzypczyk.meetings.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,14 +29,18 @@ import java.util.List;
 @Controller
 public class PageController {
 
-    @Autowired
-    private EventService eventService;
+    private final EventService eventService;
+    private final UserService userService;
+    private final UserValidator userValidator;
+    private final EmailService emailService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserValidator userValidator;
+    public PageController(EventService eventService, UserService userService, UserValidator userValidator, EmailService emailService) {
+        this.eventService = eventService;
+        this.userService = userService;
+        this.userValidator = userValidator;
+        this.emailService = emailService;
+    }
 
     @GetMapping(value = {"/home", "/"})
     public String homePage(Model model){
@@ -76,13 +81,16 @@ public class PageController {
         return "registration";
     }
 
+    @Transactional
     @PostMapping("/registration")
-    public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult){
+    public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         userValidator.validate(userForm, bindingResult);
         if(bindingResult.hasErrors()){
             return "registration";
         }
         userService.save(userForm);
+        new Thread(() -> emailService.sendActivationEmail(userForm.getEmail(),"DUPA")).start();
+        redirectAttributes.addFlashAttribute("info", "Activation email has been send to your email. Please confirm your account.");
         return "redirect:/home";
     }
 }

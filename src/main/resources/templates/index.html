@@ -18,6 +18,18 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar">
 </nav>
+<div th:if="${info}" class="modal-wrapper">
+    <div id="modal1" class="modal open" tabindex="0" style="z-index: 1003; display: block; opacity: 1; top: 10%; transform: scaleX(1) scaleY(1);">
+        <div class="modal-content">
+            <h2>Info</h2>
+            <p th:text="${info}"></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+    <div class="modal-overlay" style="z-index: 1002; display: block; opacity: 0.5;"></div>
+</div>
 <section id="presentation">
     <div class="row no-padding-lr">
         <div class="col s12 no-padding-lr">
@@ -214,6 +226,7 @@
 </footer>
 </body>
 <script type="text/javascript" src="script/navbar.js"></script>
+<script type="text/javascript" src="script/modals.js"></script>
 <script type="text/javascript" src="script/player.js"></script>
 
 </html>

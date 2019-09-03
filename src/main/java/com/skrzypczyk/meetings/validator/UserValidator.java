@@ -48,7 +48,5 @@ public class UserValidator implements Validator {
         if(!user.getEmail().matches("^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$")){
             errors.rejectValue("email", null, "Email is invalid\"");
         }
-
-
     }
 }

@@ -47,7 +47,7 @@ public class BootstrapData implements InitializingBean {
         Set<Role> roles = new HashSet<>();
         roles.add(role);
 
-        User administrator = new User("Administrator", "Admin1", "mateusz.skrzypczyk1@hotmail.com", "Admin1", roles);
+        User administrator = new User("Administrator", "Admin1", "mateusz.skrzypczyk1@hotmail.com", "Admin1", true, true, true, true, roles);
         roleService.save(role);
         userService.save(administrator);
 
