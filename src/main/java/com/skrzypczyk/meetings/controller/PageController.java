@@ -30,16 +30,10 @@ import java.util.List;
 public class PageController {
 
     private final EventService eventService;
-    private final UserService userService;
-    private final UserValidator userValidator;
-    private final EmailService emailService;
 
     @Autowired
-    public PageController(EventService eventService, UserService userService, UserValidator userValidator, EmailService emailService) {
+    public PageController(EventService eventService) {
         this.eventService = eventService;
-        this.userService = userService;
-        this.userValidator = userValidator;
-        this.emailService = emailService;
     }
 
     @GetMapping(value = {"/home", "/"})
@@ -47,50 +41,5 @@ public class PageController {
         List<Event> eventList = eventService.findNewestPosts().getContent();
         model.addAttribute("events", eventList);
         return "index";
-    }
-
-    @GetMapping("/login")
-    public String loginPage(@RequestParam(value="error", required = false)String error, @RequestParam(value="logout", required = false)String logout, Model model){
-        String errorMsg = "";
-        if(error != null){
-            errorMsg = "Username or Password is incorrect!";
-        }
-        if(logout!=null){
-            errorMsg="You have been successfully logged out!";
-        }
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(!(auth instanceof AnonymousAuthenticationToken)){
-            return "redirect:/home";
-        }
-        model.addAttribute("msg", errorMsg);
-        return "login";
-    }
-
-    @GetMapping(value="/logout")
-    public void logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-    }
-
-    @GetMapping("/registration")
-    public String registration(Model model){
-        model.addAttribute("userForm", new User());
-        return "registration";
-    }
-
-    @Transactional
-    @PostMapping("/registration")
-    public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
-        userValidator.validate(userForm, bindingResult);
-        if(bindingResult.hasErrors()){
-            return "registration";
-        }
-        userService.save(userForm);
-        new Thread(() -> emailService.sendActivationEmail(userForm.getEmail(),"DUPA")).start();
-        redirectAttributes.addFlashAttribute("info", "Activation email has been send to your email. Please confirm your account.");
-        return "redirect:/home";
     }
 }

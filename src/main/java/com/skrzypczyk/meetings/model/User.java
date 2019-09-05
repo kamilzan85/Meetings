@@ -34,6 +34,9 @@ public class User implements UserDetails {
     @Transient
     private String passwordConfirm;
 
+    @Column
+    private String activationToken;
+
     @Column(name = "IS_ENABLED", columnDefinition = "boolean default false", nullable = false)
     private Boolean enabled = false;
 

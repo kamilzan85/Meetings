@@ -2,6 +2,7 @@ package com.skrzypczyk.meetings.service.event;
 
 import com.skrzypczyk.meetings.model.Event;
 import com.skrzypczyk.meetings.repository.EventRepository;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void save(Event event) {
+        event.setIdentity(RandomString.make(8));
         eventRepository.save(event);
     }
 

@@ -1,10 +1,7 @@
 package com.skrzypczyk.meetings.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.Getter;
 import lombok.Setter;
-import net.bytebuddy.utility.RandomString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -43,7 +40,6 @@ public class Event {
     private Integer seats;
 
     public Event(){
-        this.identity = RandomString.make(8);
     }
 
 }
