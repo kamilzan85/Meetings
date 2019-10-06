@@ -22,99 +22,26 @@
 </div>
 <div class="container">
     <div class="row">
-        <h2>My events: </h2>
-        <div class="col l4">
+        <h2>Events I have subscribed to:</h2>
+        <div th:each="userEvent : ${subscribed}" class="col l4 m6">
             <div class="card hoverable">
                 <img src="https://picsum.photos/500/301.jpg">
                 <div class="card-info">
-                    <h3><b>Lorem, ipsum dolor.</b></h3>
-                    <p>0 saved users</p>
-                </div>
-            </div>
-        </div>
-        <div class="col l4 m6 s12">
-            <div class="card hoverable">
-                <img src="https://picsum.photos/500/300.jpg">
-                <div class="card-info">
-                    <h3><b>Lorem, ipsum dolor.</b></h3>
-                    <p>0 saved users</p>
-                </div>
-            </div>
-        </div>
-        <div class="col l4 m6 s12">
-            <div class="card hoverable">
-                <img src="https://picsum.photos/500/303.jpg">
-                <div class="card-info">
-                    <h3><b>Lorem, ipsum dolor.</b></h3>
-                    <p>0 saved users</p>
+                    <h3 th:text="${userEvent.title}"><b></b></h3>
+                    <p th:text="${userEvent.participants.size()}"></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <h2>All events: </h2>
-        <div class="col l4 m6 s12">
+        <div th:each="event : ${events}" class="col l4 m6 s12">
             <a href="event.html">
                 <div class="card hoverable">
                     <img src="https://picsum.photos/500/333.jpg">
                     <div class="card-info">
-                        <h3><b>Lorem, ipsum dolor.</b></h3>
-                        <p>0 saved users</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col l4 m6 s12">
-            <a href="event.html">
-                <div class="card hoverable">
-                    <img src="https://picsum.photos/500/212.jpg">
-                    <div class="card-info">
-                        <h3><b>Lorem, ipsum dolor.</b></h3>
-                        <p>0 saved users</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col l4 m6 s12">
-            <a href="event.html">
-                <div class="card hoverable">
-                    <img src="https://picsum.photos/500/222.jpg">
-                    <div class="card-info">
-                        <h3><b>Lorem, ipsum dolor.</b></h3>
-                        <p>0 saved users</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col l4 m6 s12">
-            <a href="event.html">
-                <div class="card hoverable">
-                    <img src="https://picsum.photos/500/213.jpg">
-                    <div class="card-info">
-                        <h3><b>Lorem, ipsum dolor.</b></h3>
-                        <p>0 saved users</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col l4 m6 s12">
-            <a href="event.html">
-                <div class="card hoverable">
-                    <img src="https://picsum.photos/500/214.jpg">
-                    <div class="card-info">
-                        <h3><b>Lorem, ipsum dolor.</b></h3>
-                        <p>0 saved users</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col l4 m6 s12">
-            <a href="event.html">
-                <div class="card hoverable">
-                    <img src="https://picsum.photos/500/215.jpg">
-                    <div class="card-info">
-                        <h3><b>Lorem, ipsum dolor.</b></h3>
-                        <p>0 saved users</p>
+                        <h3 th:text="${event.title}"><b></b></h3>
+                        <p th:text="${event.participants.size()}"></p>
                     </div>
                 </div>
             </a>

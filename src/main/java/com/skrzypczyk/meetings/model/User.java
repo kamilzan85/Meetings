@@ -1,18 +1,15 @@
 package com.skrzypczyk.meetings.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "user")
 public class User implements UserDetails {
@@ -37,6 +34,9 @@ public class User implements UserDetails {
     @Column
     private String activationToken;
 
+    @ManyToMany(mappedBy = "participants")
+    private Set<Event> events = new HashSet<>();
+
     @Column(name = "IS_ENABLED", columnDefinition = "boolean default false", nullable = false)
     private Boolean enabled = false;
 
@@ -51,7 +51,6 @@ public class User implements UserDetails {
 
     @ManyToMany
     private Set<Role> roles;
-
 
     public User() {
     }

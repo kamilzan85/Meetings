@@ -69,16 +69,18 @@ public class BootstrapData implements InitializingBean {
             place.setY(Double.valueOf(df.format(-180 + (180 + 180) * r.nextDouble())));
             placeService.save(place);
 
+            Set<User> participants = new HashSet<>();
+            participants.add(administrator);
             Event event = new Event();
+            event.setOrganizer(administrator);
+            event.setParticipants(participants);
             event.setCategory(categoryService.findCategoryById((long) r.nextInt(10)+1).get());
-            event.setDescription(RandomString.make());
+            event.setDescription("Przykładowy skrócony opis wydarzenia. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków");
             event.setPlaceOfMeeting(place);
             event.setSeats(r.nextInt());
-            event.setTitle(RandomString.make());
+            event.setTitle("Wydarzenie numer " + i);
             eventService.save(event);
         }
-
-
     }
 
     @Override

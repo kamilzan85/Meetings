@@ -23,11 +23,11 @@
         <div class="row">
             <div class="col s12 m8 info">
                 <p>Monady, 1 July 2019</p>
-                <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
+                <h1 th:text="${event.getTitle()}"></h1>
                 <h6>Organizer:</h6>
                 <div class="organizer">
                     <img class="avatar" th:src="@{~/img/avatar.png}">
-                    <div><a href="!#">Niiiick</a></div>
+                    <div><a href="!#" th:text="${event.getOrganizer().getUsername()}">Niiiick</a></div>
                 </div>
             </div>
             <div class="col s12 m4">
@@ -53,26 +53,13 @@
         </div>
         <div class="row">
             <h3><b>Description</b></h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem nam
-                architecto minima beatae<br>
-
-                explicabo dolores, perspiciatis repudiandae deleniti quibusdam, aut rerum mollitia quasi quos.
-                Necessitatibus accusamus laudantium ut soluta, corrupti voluptatum placeat deserunt esse fuga
-                beatae<br>
-                laboriosam commodi adipisci neque vitae earum, consequatur eveniet maxime. Doloribus praesentium
-                aliquam labore sed ab velit cum nostrum error quam, natus blanditiis, similique autem fugit
-                corrupti
-                itaque voluptate distinctio! Laboriosam consectetur molestias commodi cupiditate fugit. Sit,
-                minus
-                in distinctio ab consectetur eum ipsam repellendus adipisci voluptatibus, placeat quae
-                accusantium
-                qui illum iure eos harum unde voluptatum sequi sed provident ad pariatur. Eius, reprehenderit
-                libero?</p>
+            <p th:utext="${event.getDescription()}">
+            </p>
         </div>
         <div class="row">
             <div class="members">
-                <h3><b>Members:</b></h3>
-                <div class="col s12 l7">
+                <h3><b>Joined:</b></h3>
+                <div th:each="participant: ${event.getParticipants()}" class="col s12 l7">
                     <div class="col s3 l2">
                         <div class="card">
                             <div class="card-image">
@@ -81,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="card-content">
-                                <a href="#">looooooooooooong</a>
+                                <a href="#" th:text="${participant.getUsername()}"></a>
                             </div>
                         </div>
                     </div>
@@ -239,8 +226,6 @@
 </div>
 <footer th:replace="fragments/footer :: footer">
 </footer>
-
-
 </body>
 <script th:src="@{/script/navbar.js}"></script>
 <script th:src="@{/script/event.js}"></script>
