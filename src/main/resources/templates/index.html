@@ -37,7 +37,7 @@
             <video autoplay muted loop id="myVideo">
                 <source src="video/video.mp4" type=" video/mp4">
             </video>
-            <img src="img/party.jpg" id="myImage">
+            <img src="img/partsy.jpg" id="myImage">
 
             <div class="content">
                 <h1>Lorem, ipsum dolor.</h1>
@@ -58,7 +58,7 @@
                 <div th:each="event : ${events}" class="col s6 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="https://picsum.photos/id/234/400">
+                            <img th:src="${@imageServiceImpl.getImage(event.identity)}">
                             <span class="card-title" th:text="${event.title}"></span>
                         </div>
                         <div class="card-content">
@@ -105,5 +105,4 @@
 <script type="text/javascript" src="script/navbar.js"></script>
 <script type="text/javascript" src="script/modals.js"></script>
 <script type="text/javascript" src="script/player.js"></script>
-
 </html>

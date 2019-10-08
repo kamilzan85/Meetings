@@ -24,6 +24,7 @@ public class Event {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
 
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime time;
 
     private String title;

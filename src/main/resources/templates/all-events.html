@@ -38,7 +38,7 @@
         <div th:each="event : ${events}" class="col l4 m6 s12">
             <a href="event.html">
                 <div class="card hoverable">
-                    <img src="https://picsum.photos/500/333.jpg">
+                    <img th:src="${@imageServiceImpl.getImage(event.identity)}">
                     <div class="card-info">
                         <h3 th:text="${event.title}"><b></b></h3>
                         <p th:text="${event.participants.size()}"></p>

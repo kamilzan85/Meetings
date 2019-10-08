@@ -1,21 +1,17 @@
 package com.skrzypczyk.meetings.controller;
 
 import com.skrzypczyk.meetings.model.Event;
-import com.skrzypczyk.meetings.model.Place;
 import com.skrzypczyk.meetings.service.category.CategoryService;
 import com.skrzypczyk.meetings.service.event.EventService;
-import com.skrzypczyk.meetings.service.place.PlaceService;
+import com.skrzypczyk.meetings.service.image.ImageService;
 import com.skrzypczyk.meetings.service.user.UserService;
 import com.skrzypczyk.meetings.utils.ExtendedProperties;
 import com.skrzypczyk.meetings.validator.EventValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -28,12 +24,14 @@ public class EventController {
     private final UserService userService;
     private final EventValidator eventValidator;
     private final CategoryService categoryService;
+    private final ImageService imageService;
 
-    public EventController(EventService eventService, UserService userService, EventValidator eventValidator, CategoryService categoryService) {
+    public EventController(EventService eventService, UserService userService, EventValidator eventValidator, CategoryService categoryService, ImageService imageService) {
         this.eventService = eventService;
         this.userService = userService;
         this.eventValidator = eventValidator;
         this.categoryService = categoryService;
+        this.imageService = imageService;
     }
 
     @GetMapping("/events/{identity}")
@@ -55,7 +53,7 @@ public class EventController {
     }
 
     @PostMapping("/new-event")
-    public String createNewPost(@Valid @ModelAttribute("eventForm") final Event eventForm,
+    public String createNewPost(@Valid @ModelAttribute("eventForm") final Event eventForm, @RequestParam("file") MultipartFile file,
                                 final BindingResult bindingResult,
                                 final RedirectAttributes redirectAttributes,
                                 Principal principal) {
@@ -67,6 +65,7 @@ public class EventController {
         }
         eventForm.setOrganizer(userService.findByUsername(principal.getName()));
         eventService.save(eventForm);
+        imageService.uploadEventImage(file, eventForm.getIdentity());
         return "redirect:/events/" + eventForm.getIdentity();
     }
 }
