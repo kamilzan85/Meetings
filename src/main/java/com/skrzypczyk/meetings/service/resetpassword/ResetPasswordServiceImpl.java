@@ -50,9 +50,16 @@ public class ResetPasswordServiceImpl implements ResetPasswordService{
             optionalResetPassword.ifPresent(resetPasswordRepository::delete);
         }
     }
-    
+
     @Override
     public Optional<ResetPassword> findByToken(String token) {
-        return resetPasswordRepository.findAllByToken(token);
+        Optional<ResetPassword> optionalResetPassword = resetPasswordRepository.findAllByToken(token);
+        if (optionalResetPassword.isPresent()) {
+            if(optionalResetPassword.get().getTokenExpiryDate().isBefore(LocalDateTime.now())){
+                return Optional.empty();
+            }
+            return optionalResetPassword;
+        }
+        return Optional.empty();
     }
 }

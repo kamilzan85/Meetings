@@ -17,6 +17,19 @@
 
 <body>
 <div class="row">
+    <div th:if="${info}" class="modal-wrapper">
+        <div id="modal1" class="modal open" tabindex="0"
+             style="z-index: 1003; display: block; opacity: 1; top: 10%; transform: scaleX(1) scaleY(1);">
+            <div class="modal-content">
+                <h2>Info</h2>
+                <p th:text="${info}"></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
+        <div class="modal-overlay" style="z-index: 1002; display: block; opacity: 0.5;"></div>
+    </div>
     <div id="login-wrapper" class="col s10 offset-s1 m8 offset-m2 l6 offset-l3">
         <div class="arrow">
             <a th:href="@{/home}"><i class="material-icons">arrow_back</i></a>
@@ -73,5 +86,5 @@
 </div>
 
 </body>
-
+<script type="text/javascript" src="script/modals.js"></script>
 </html>

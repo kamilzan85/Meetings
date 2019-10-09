@@ -104,34 +104,40 @@ public class AccountController {
     }
 
     @PostMapping("/reset-password")
-    public String resetPassword(@RequestParam(value = "email") String email){
+    public String resetPassword(@RequestParam(value = "email") String email,
+                                RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("info", "We send you reset password link on your email.");
         resetPasswordService.save(email);
-        return "login";
+        return "redirect:/login";
     }
 
     @GetMapping("/change-password")
-    public String changePasswordView(@RequestParam(value="token")String token){
+    public String changePasswordView(@RequestParam(value="token")String token, RedirectAttributes redirectAttributes){
         Optional<ResetPassword> optionalResetPassword = resetPasswordService.findByToken(token);
         if(!optionalResetPassword.isPresent()){
+            redirectAttributes.addFlashAttribute("info", "Your link is incorrect or have expired!");
             return "redirect:/login";
         }
         return "change-password";
     }
 
     @PostMapping("/change-password")
-    public String changePassword(@RequestParam(value="token")String token, @RequestParam(value = "password") String password, @RequestParam(value = "confirm-password") String confirmPassword){
+    public String changePassword(@RequestParam(value="token")String token,
+                                 @RequestParam(value = "password") String password,
+                                 @RequestParam(value = "confirm-password") String confirmPassword,
+                                 RedirectAttributes redirectAttributes){
+
         Optional<ResetPassword> optionalResetPassword = resetPasswordService.findByToken(token);
         if(!password.equals(confirmPassword)){
-            System.out.println(password);
-            System.out.println(confirmPassword);
-            return "redirect:/change-password";
+            redirectAttributes.addFlashAttribute("info", "Passwords do not match!");
+            return "redirect:/change-password?token="+token;
         }
         if(optionalResetPassword.isPresent()){
             User user = optionalResetPassword.get().getUser();
             userService.changePassword(user, password);
+            redirectAttributes.addFlashAttribute("info", "Password successfully changed!");
             return "redirect:/login";
         }
         return "redirect:/home";
-
     }
 }
