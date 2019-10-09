@@ -41,13 +41,11 @@ public class BootstrapData implements InitializingBean {
     private List<String> categories;
 
     public void initData() {
-
-
         Role role = new Role("ADMIN");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
 
-        User administrator = new User("Administrator", "Admin1", "mateusz.skrzypczyk1@hotmail.com", "Admin1", true, true, true, true, roles);
+        User administrator = new User("Administrator", "Admin1", "mateusz.skrzypczyk1@hotmail.com", "mateusz.skrzypczyk1@hotmail.com", true, true, true, true, roles);
         roleService.save(role);
         userService.save(administrator);
 

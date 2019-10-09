@@ -1,7 +1,9 @@
 package com.skrzypczyk.meetings.controller;
 
+import com.skrzypczyk.meetings.model.ResetPassword;
 import com.skrzypczyk.meetings.model.User;
 import com.skrzypczyk.meetings.service.email.EmailService;
+import com.skrzypczyk.meetings.service.resetpassword.ResetPasswordService;
 import com.skrzypczyk.meetings.service.user.UserService;
 import com.skrzypczyk.meetings.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +32,14 @@ public class AccountController {
     private final UserService userService;
     private final UserValidator userValidator;
     private final EmailService emailService;
+    private final ResetPasswordService resetPasswordService;
 
     @Autowired
-    public AccountController(UserService userService, UserValidator userValidator, EmailService emailService) {
+    public AccountController(UserService userService, UserValidator userValidator, EmailService emailService, ResetPasswordService resetPasswordService) {
         this.userService = userService;
         this.userValidator = userValidator;
         this.emailService = emailService;
+        this.resetPasswordService = resetPasswordService;
     }
 
     @GetMapping("/login")
@@ -84,7 +88,7 @@ public class AccountController {
     }
 
     @GetMapping("/activation")
-    public String userActivation(@RequestParam(value="token", required = true)String token, RedirectAttributes redirectAttributes){
+    public String userActivation(@RequestParam(value="token")String token, RedirectAttributes redirectAttributes){
         Optional<User> optionalUser = userService.activatingUser(token);
         if(optionalUser.isPresent()){
             redirectAttributes.addFlashAttribute("info", "Your account has been successfully activated");
@@ -92,5 +96,42 @@ public class AccountController {
             redirectAttributes.addFlashAttribute("info", "Invalid activation link");
         }
         return "redirect:/home";
+    }
+
+    @GetMapping("/reset-password")
+    public String resetPassword(){
+        return "reset";
+    }
+
+    @PostMapping("/reset-password")
+    public String resetPassword(@RequestParam(value = "email") String email){
+        resetPasswordService.save(email);
+        return "login";
+    }
+
+    @GetMapping("/change-password")
+    public String changePasswordView(@RequestParam(value="token")String token){
+        Optional<ResetPassword> optionalResetPassword = resetPasswordService.findByToken(token);
+        if(!optionalResetPassword.isPresent()){
+            return "redirect:/login";
+        }
+        return "change-password";
+    }
+
+    @PostMapping("/change-password")
+    public String changePassword(@RequestParam(value="token")String token, @RequestParam(value = "password") String password, @RequestParam(value = "confirm-password") String confirmPassword){
+        Optional<ResetPassword> optionalResetPassword = resetPasswordService.findByToken(token);
+        if(!password.equals(confirmPassword)){
+            System.out.println(password);
+            System.out.println(confirmPassword);
+            return "redirect:/change-password";
+        }
+        if(optionalResetPassword.isPresent()){
+            User user = optionalResetPassword.get().getUser();
+            userService.changePassword(user, password);
+            return "redirect:/login";
+        }
+        return "redirect:/home";
+
     }
 }

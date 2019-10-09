@@ -34,7 +34,7 @@ public class User implements UserDetails {
     @Column
     private String activationToken;
 
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "participants")
     private Set<Event> events = new HashSet<>();
 
     @Column(name = "IS_ENABLED", columnDefinition = "boolean default false", nullable = false)

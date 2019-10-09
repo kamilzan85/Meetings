@@ -14,14 +14,17 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private SecurityConfig securityConfig;
+    private final SecurityConfig securityConfig;
+
+    public UserServiceImpl(SecurityConfig securityConfig, RoleRepository roleRepository, UserRepository userRepository) {
+        this.securityConfig = securityConfig;
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User save(User user) {
@@ -43,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
@@ -51,5 +54,11 @@ public class UserServiceImpl implements UserService {
     public Optional<User> activatingUser(String activationToken) {
         userRepository.enableUser(activationToken);
         return userRepository.findByActivationToken(activationToken);
+    }
+
+    @Override
+    public void changePassword(User user, String password) {
+        user.setEncodedPassword(securityConfig.passwordEncoder().encode(password));
+        userRepository.save(user);
     }
 }

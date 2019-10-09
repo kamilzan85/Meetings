@@ -33,3 +33,4 @@ build/
 
 ### Hidden properties ###
 config.properties
+application.properties
