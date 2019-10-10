@@ -68,7 +68,9 @@ public class BootstrapData implements InitializingBean {
             placeService.save(place);
 
             Set<User> participants = new HashSet<>();
-            participants.add(administrator);
+            if(i%8==0){
+                participants.add(administrator);
+            }
             Event event = new Event();
             event.setOrganizer(administrator);
             event.setParticipants(participants);

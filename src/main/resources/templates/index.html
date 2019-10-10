@@ -37,12 +37,13 @@
             <video autoplay muted loop id="myVideo">
                 <source src="video/video.mp4" type=" video/mp4">
             </video>
-            <img src="img/partsy.jpg" id="myImage">
+            <img src="img/party.jpg" id="myImage">
 
             <div class="content">
                 <h1>Lorem, ipsum dolor.</h1>
                 <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                <a th:href="@{/login}" class="waves-effect waves-light orange lighten-2 btn">Join us</a>
+                <a sec:authorize="isAnonymous()" th:href="@{/login}" class="waves-effect waves-light orange lighten-2 btn">Join us</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/new-event}" class="waves-effect waves-light orange lighten-2 btn">Create new event</a>
             </div>
         </div>
     </div>
@@ -90,7 +91,7 @@
                 <div class="col-content">
                     <div class="card center-align">
                         <div class="card-image">
-                            <img src="https://picsum.photos/400/400?random">
+                            <img th:src="${@imageServiceImpl.getImage('124124')}">
                         </div>
                         <span class="card-title" th:text="${category.name}"></span>
                     </div>

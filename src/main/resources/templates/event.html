@@ -39,12 +39,11 @@
                 <h4>Free places: 0</h4>
             </div>
         </div>
-
     </section>
     <section>
         <div class="row">
             <div class="col s12 m7">
-                <img class="materialboxed event-image" th:src="@{/img/example2.jpg}">
+                <img class="materialboxed event-image" th:src="${@imageServiceImpl.getImage(event.getIdentity())}">
             </div>
             <div class="col s12 m5">
                 <div id="map">
@@ -72,90 +71,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s3 l2">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-avatar">
-                                    <img th:src="@{/img/avatar.png}">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <a href="#">looooooooooooong</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3 l2">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-avatar">
-                                    <img th:src="@{/img/avatar.png}">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <a href="#">looooooooooooong</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3 l2">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-avatar">
-                                    <img th:src="@{/img/avatar.png}">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <a href="#">looooooooooooong</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3 l2">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-avatar">
-                                    <img th:src="@{/img/avatar.png}">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <a href="#">looooooooooooong</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3 l2">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-avatar">
-                                    <img th:src="@{/img/avatar.png}">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <a href="#">looooooooooooong</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3 l2">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-avatar">
-                                    <img th:src="@{/img/avatar.png}">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <a href="#">looooooooooooong</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3 l2">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-avatar">
-                                    <img th:src="@{/img/avatar.png}">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <a href="#">looooooooooooong</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -174,9 +89,7 @@
                 <div class="card">
                     <div class="card-image">
                         <img src="https://picsum.photos/id/137/400">
-
                     </div>
-
                     <div class="card-action">
                         <a href="#">This is a link</a>
                     </div>
@@ -186,40 +99,31 @@
                 <div class="card">
                     <div class="card-image">
                         <img src="https://picsum.photos/id/134/400">
-
                     </div>
-
                     <div class="card-action">
                         <a href="#">This is a link</a>
                     </div>
                 </div>
-
             </div>
             <div class="col s6 m3">
                 <div class="card">
                     <div class="card-image">
                         <img src="https://picsum.photos/id/136/400">
-
                     </div>
-
                     <div class="card-action">
                         <a href="#">This is a link</a>
                     </div>
                 </div>
-
             </div>
             <div class="col s6 m3">
                 <div class="card">
                     <div class="card-image">
                         <img src="https://picsum.photos/id/135/400">
-
                     </div>
-
                     <div class="card-action">
                         <a href="#">This is a link</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

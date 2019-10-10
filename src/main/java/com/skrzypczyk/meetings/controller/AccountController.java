@@ -138,6 +138,7 @@ public class AccountController {
             redirectAttributes.addFlashAttribute("info", "Password successfully changed!");
             return "redirect:/login";
         }
+        redirectAttributes.addFlashAttribute("Your link is incorrect or have expired!");
         return "redirect:/home";
     }
 }

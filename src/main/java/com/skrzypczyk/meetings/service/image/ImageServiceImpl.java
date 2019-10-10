@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Random;
 
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -41,6 +42,8 @@ public class ImageServiceImpl implements ImageService {
         if(matchingFiles != null && matchingFiles.length>0){
             return "images/events/"+matchingFiles[0].getName();
         }
-        return "images/events/no-photo.jpg";
+        Random random = new Random();
+        int photoId = random.nextInt(1083);
+        return "https://picsum.photos/id/" + photoId + "/1000/1000";
     }
 }
