@@ -39,6 +39,7 @@ public class EventController {
         Event event = eventService.findEventByIdentity(identity);
         model.addAttribute("event", event);
         model.addAttribute("mapApiKey", ExtendedProperties.INSTANCE.getGoogleApiKey());
+        model.addAttribute("eventPhoto", imageService.getEventImage(event.getIdentity()));
         return "event";
     }
 

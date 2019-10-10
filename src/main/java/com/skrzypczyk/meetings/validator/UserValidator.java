@@ -42,7 +42,7 @@ public class UserValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
-        if(userService.findByEmail(user.getEmail())!=null){
+        if(userService.findByEmail(user.getEmail()).isPresent()){
             errors.rejectValue("email", null, "Someone already has that email.");
         }
         if(!user.getEmail().matches("^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$")){

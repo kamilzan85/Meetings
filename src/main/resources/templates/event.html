@@ -43,7 +43,7 @@
     <section>
         <div class="row">
             <div class="col s12 m7">
-                <img class="materialboxed event-image" th:src="${@imageServiceImpl.getImage(event.getIdentity())}">
+                <img class="materialboxed event-image" th:src="@{${eventPhoto}}">
             </div>
             <div class="col s12 m5">
                 <div id="map">

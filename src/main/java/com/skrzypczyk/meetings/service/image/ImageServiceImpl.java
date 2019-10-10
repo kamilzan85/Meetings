@@ -20,13 +20,16 @@ public class ImageServiceImpl implements ImageService {
     @Value("${image.event.path}")
     private String imageUploadPath;
 
+    @Value("${image.categories.path}")
+    private String categoryImageUploadPath;
+
     private final String UPLOAD_ERROR_MSG = "Failed to store file %s";
 
     @Override
     public void uploadEventImage(MultipartFile image, String eventIdentity) {
         if(!image.isEmpty()){
             String fileExtension = image.getOriginalFilename().split("\\.")[1];
-            String fileName = eventIdentity + fileExtension;
+            String fileName = eventIdentity;
             try {
                 Files.copy(image.getInputStream(), Paths.get(imageUploadPath + fileName + "." + fileExtension), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
@@ -36,11 +39,24 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public String getImage(String eventIdentity) {
+    public String getEventImage(String eventIdentity) {
         File f = new File(imageUploadPath);
         File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(eventIdentity));
         if(matchingFiles != null && matchingFiles.length>0){
-            return "images/events/"+matchingFiles[0].getName();
+            return "~/images/events/"+matchingFiles[0].getName();
+        }
+        Random random = new Random();
+        int photoId = random.nextInt(1083);
+        return "https://picsum.photos/id/" + photoId + "/1000/1000";
+    }
+
+    @Override
+    public String getCategoryImage(String categoryName) {
+        File f = new File(categoryImageUploadPath);
+        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(categoryName.toLowerCase()));
+        System.out.println(categoryName);
+        if(matchingFiles != null && matchingFiles.length>0){
+            return "/images/categories/"+matchingFiles[0].getName();
         }
         Random random = new Random();
         int photoId = random.nextInt(1083);

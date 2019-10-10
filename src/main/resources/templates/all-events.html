@@ -25,7 +25,7 @@
         <h2>Events I have subscribed to:</h2>
         <div th:each="userEvent : ${subscribed}" class="col l4 m6">
             <div class="card hoverable">
-                <img th:src="${@imageServiceImpl.getImage('123123')}">
+                <img th:src="${@imageServiceImpl.getEventImage('123123')}">
                 <div class="card-info">
                     <h3 th:text="${userEvent.title}"><b></b></h3>
                     <p>Number of participants:
@@ -40,7 +40,7 @@
         <div th:each="event : ${events}" class="col l4 m6 s12">
             <a th:href="@{/events/{identity}(identity=${event.identity})}">
                 <div class="card hoverable">
-                    <img th:src="${@imageServiceImpl.getImage(event.identity)}">
+                    <img th:src="${@imageServiceImpl.getEventImage(event.identity)}">
                     <div class="card-info">
                         <h3 th:text="${event.title}"><b></b></h3>
                         <p>Number of participants:
