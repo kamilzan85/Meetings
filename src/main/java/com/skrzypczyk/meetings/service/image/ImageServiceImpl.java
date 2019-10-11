@@ -54,7 +54,6 @@ public class ImageServiceImpl implements ImageService {
     public String getCategoryImage(String categoryName) {
         File f = new File(categoryImageUploadPath);
         File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(categoryName.toLowerCase()));
-        System.out.println(categoryName);
         if(matchingFiles != null && matchingFiles.length>0){
             return "/images/categories/"+matchingFiles[0].getName();
         }
