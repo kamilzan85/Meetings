@@ -1,5 +1,6 @@
 package com.skrzypczyk.meetings.service.event;
 
+import com.skrzypczyk.meetings.model.Category;
 import com.skrzypczyk.meetings.model.Event;
 import org.springframework.data.domain.Page;
 
@@ -10,4 +11,5 @@ public interface EventService {
     Page<Event> findNewestPosts();
     Event findEventByIdentity(String identity);
     List<Event> findAllEvents();
+    List<Event> findAllByCategory(Category category);
 }

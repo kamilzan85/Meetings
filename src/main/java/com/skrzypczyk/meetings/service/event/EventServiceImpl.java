@@ -1,5 +1,6 @@
 package com.skrzypczyk.meetings.service.event;
 
+import com.skrzypczyk.meetings.model.Category;
 import com.skrzypczyk.meetings.model.Event;
 import com.skrzypczyk.meetings.model.Place;
 import com.skrzypczyk.meetings.repository.EventRepository;
@@ -51,5 +52,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> findAllEvents() {
         return eventRepository.findAll();
+    }
+
+    @Override
+    public List<Event> findAllByCategory(Category category) {
+        return eventRepository.findAllByCategory(category);
     }
 }

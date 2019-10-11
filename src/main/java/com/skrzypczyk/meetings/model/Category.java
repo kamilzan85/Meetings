@@ -15,4 +15,8 @@ public class Category {
     private Long id;
 
     private String name;
+
+    public String getNameWithDashes(){
+        return name.replaceAll(" ","-");
+    }
 }

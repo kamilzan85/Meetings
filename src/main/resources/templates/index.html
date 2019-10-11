@@ -88,14 +88,16 @@
         </div>
         <div class="row">
             <div th:each="category : ${categories}" class="col s6 m4 l3">
-                <div class="col-content">
-                    <div class="card center-align">
-                        <div class="card-image">
-                            <img th:src="${@imageServiceImpl.getCategoryImage(category.getName())}">
+                <a th:href="@{/categories/{categoryName}(categoryName=${category.getNameWithDashes()})}">
+                    <div class="col-content">
+                        <div class="card center-align">
+                            <div class="card-image">
+                                <img th:src="${@imageServiceImpl.getCategoryImage(category.getName())}">
+                            </div>
+                            <span class="card-title" th:text="${category.name}"></span>
                         </div>
-                        <span class="card-title" th:text="${category.name}"></span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>

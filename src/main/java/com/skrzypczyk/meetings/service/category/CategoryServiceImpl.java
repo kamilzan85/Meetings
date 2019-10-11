@@ -40,4 +40,9 @@ public class CategoryServiceImpl implements CategoryService {
         Pageable pageable = PageRequest.of(0,8);
         return categoryRepository.findAll(pageable);
     }
+
+    @Override
+    public Optional<Category> findByName(String name) {
+        return categoryRepository.findByNameIgnoreCase(name);
+    }
 }

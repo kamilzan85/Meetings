@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -35,7 +37,7 @@ public class PageController {
     @GetMapping(value = {"/home", "/"})
     public String homePage(Model model){
         List<Event> eventList = eventService.findNewestPosts().getContent();
-        List<Category> categoryList = categoryService.findPageOfCategories().getContent();
+        List<Category> categoryList = categoryService.findAll();
         model.addAttribute("events", eventList);
         model.addAttribute("categories", categoryList);
         return "index";
@@ -46,6 +48,19 @@ public class PageController {
         String username = SecurityUtils.getLoggedUserNameFromRequest(request);
         model.addAttribute("subscribed", userService.findByUsername(username).getEvents());
         model.addAttribute("events", eventService.findAllEvents());
+        return "all-events";
+    }
+
+    @GetMapping(value = "/categories/{categoryName}")
+    public String allEventsByCategory(Model model, @PathVariable String categoryName,  HttpServletRequest request){
+        Optional<Category> optionalCategory = categoryService.findByName(categoryName.replaceAll("-"," "));
+        String username = SecurityUtils.getLoggedUserNameFromRequest(request);
+        if(optionalCategory.isPresent()){
+            model.addAttribute("events", eventService.findAllByCategory(optionalCategory.get()));
+        }else{
+            model.addAttribute("events", eventService.findAllEvents());
+        }
+        model.addAttribute("subscribed", userService.findByUsername(username).getEvents());
         return "all-events";
     }
 }

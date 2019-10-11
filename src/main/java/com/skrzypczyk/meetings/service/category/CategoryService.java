@@ -11,4 +11,5 @@ public interface CategoryService {
     Optional<Category> findCategoryById(Long id);
     List<Category> findAll();
     Page<Category> findPageOfCategories();
+    Optional<Category> findByName(String name);
 }
