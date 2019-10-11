@@ -77,7 +77,7 @@ public class BootstrapData implements InitializingBean {
             event.setCategory(categoryService.findCategoryById((long) r.nextInt(10)+1).get());
             event.setDescription("Przykładowy skrócony opis wydarzenia. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków. Ciekawe ile może mieć maksymalnie znaków");
             event.setPlaceOfMeeting(place);
-            event.setSeats(r.nextInt());
+            event.setSeats(r.nextInt(200));
             event.setTitle("Wydarzenie numer " + i);
             eventService.save(event);
         }

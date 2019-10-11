@@ -2,6 +2,7 @@ package com.skrzypczyk.meetings.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String identity;
+    private String identity = RandomString.make(8);
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
@@ -48,5 +49,9 @@ public class Event {
     private Set<User> participants = new HashSet<>();
 
     public Event(){
+    }
+
+    public Integer getNumberOfFreeSeats(){
+        return getSeats()-getParticipants().size();
     }
 }

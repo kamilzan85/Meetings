@@ -34,7 +34,6 @@ public class EventServiceImpl implements EventService {
         place.setY(event.getPlaceOfMeeting().getY());
         placeService.save(place);
         event.setPlaceOfMeeting(place);
-        event.setIdentity(RandomString.make(8));
         eventRepository.save(event);
     }
 

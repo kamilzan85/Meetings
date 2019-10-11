@@ -31,6 +31,9 @@
                     <p>Number of participants:
                         <span th:text="${userEvent.participants.size()}"></span>
                     </p>
+                    <p>Free places:
+                        <span th:text="${userEvent.getNumberOfFreeSeats()}"></span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -45,6 +48,9 @@
                         <h3 th:text="${event.title}"><b></b></h3>
                         <p>Number of participants:
                             <span th:text="${event.participants.size()}"></span>
+                        </p>
+                        <p>Free places:
+                            <span th:text="${event.getNumberOfFreeSeats()}"></span>
                         </p>
                     </div>
                 </div>
